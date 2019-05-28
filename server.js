@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
-process.env.NODE_ENV = 'development';
+process.env.NODE_ENV = 'production';
 const port=process.env.PORT || 3000;
 
 // config variables
@@ -36,10 +36,9 @@ app.get('/', (req, res) => {
     res.json({"message": "Welcome to EasyNotes application. Take notes quickly. Organize and keep track of all your notes."});
 });
 
-require('./app/routes/note.routes.js')(app);
+require('./app/routes/fountain.routes.js')(app);
 
 // listen for requests
 app.listen(port, () => {
-    //console.log("Server is listening on port 3000");
     console.log(`${global.gConfig.app_name} listening on port ${port}`);
 });
