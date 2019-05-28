@@ -7,8 +7,18 @@ option {
     text-align: center;
 }
 
+body {
+    font-family: 'Playfair Display', serif;
+}
+
 .fountain {
     margin-bottom: 3%;
+    padding: 2%;
+    text-transform: lowercase;
+}
+
+button::first-letter {
+    text-transform: uppercase;
 }
 
 .button-fountain {
@@ -17,9 +27,10 @@ option {
     border-radius: 15px;
 }
 
-.information-fountain {
+#information-fountain {
     border: 1px solid black;
     margin-top: 20%;
+    visibility: hidden;
 }
 
 .menu-fixed {
