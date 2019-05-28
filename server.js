@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 process.env.NODE_ENV = 'production';
+const port=process.env.PORT || 3000;
 
 // config variables
 const config = require('./config.js');
@@ -40,7 +41,7 @@ app.get('/', (req, res) => {
 require('./app/routes/note.routes.js')(app);
 
 // listen for requests
-app.listen(global.gConfig.node_port, () => {
+app.listen(port, () => {
     //console.log("Server is listening on port 3000");
-    console.log(`${global.gConfig.app_name} listening on port ${global.gConfig.node_port}`);
+    console.log(`${global.gConfig.app_name} listening on port ${port}`);
 });
