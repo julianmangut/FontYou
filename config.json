@@ -1,0 +1,11 @@
+
+{
+    "development": {
+        "config_id": "development",
+        "database": "mongodb://localhost:27017/fontyou"
+    },
+    "production": {
+        "config_id": "production",
+        "database": "mongodb://heroku_0tvwj2c9:ajegcs2fb3t9vs828jjcgds6a6@ds263156.mlab.com:63156/heroku_0tvwj2c9"
+    }
+}
