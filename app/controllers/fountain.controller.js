@@ -1,8 +1,24 @@
 const Fountain = require('../models/fountain.model.js');
 
 // Retrieve and return all notes from the database.
+
+/* 
+QUERYING: 
+Fountain.find({
+        "direccion": /P/i
+    });
+
+Fountain.find({
+    "distrito": "RETIRO" 
+})
+*/
 exports.findAll = (req, res) => {
-    Fountain.find()
+    const params = {
+        distrito: "RETIRO"
+    }
+    Fountain.find(
+        params
+    )
     .then(fountains => {
         res.send(fountains);
     }).catch(err => {
