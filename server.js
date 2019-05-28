@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+var cors = require('cors');
 
 process.env.NODE_ENV = 'production';
 const port=process.env.PORT || 3000;
@@ -11,10 +12,11 @@ const config = require('./config.js');
 const app = express();
 
 // parse requests of content-type - application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // parse requests of content-type - application/json
-app.use(bodyParser.json())
+app.use(bodyParser.json());
+app.use(cors());
 
 // Configuring the database
 const mongoose = require('mongoose');
