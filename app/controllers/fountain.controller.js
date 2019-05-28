@@ -11,10 +11,13 @@ Fountain.find({
 Fountain.find({
     "distrito": "RETIRO" 
 })
+const params = {
+        distrito: "RETIRO"
+    }
 */
 exports.findAll = (req, res) => {
     const params = {
-        distrito: "RETIRO"
+        
     }
     Fountain.find(
         params
