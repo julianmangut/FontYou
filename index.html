@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>FontYou</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+
+<body onload="startFilter()">
+
+    <div class="container">
+        <div class="row filter">
+            <form class="col-sm-11" id="filter" name="filter" action="javascript:createJson()">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-2">
+                            <select class="form-control " name="Letter" id="Letter">
+                                <option value="null" selected>Letter</option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="E">E</option>
+                                <option value="F">F</option>
+                                <option value="G">G</option>
+                                <option value="H">H</option>
+                                <option value="I">I</option>
+                                <option value="J">J</option>
+                                <option value="K">K</option>
+                                <option value="L">L</option>
+                                <option value="M">M</option>
+                                <option value="N">N</option>
+                                <option value="O">O</option>
+                                <option value="P">P</option>
+                                <option value="Q">Q</option>
+                                <option value="R">R</option>
+                                <option value="S">S</option>
+                                <option value="T">T</option>
+                                <option value="U">U</option>
+                                <option value="V">V</option>
+                                <option value="W">W</option>
+                                <option value="X">X</option>
+                                <option value="Y">Y</option>
+                                <option value="Z">Z</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-6 col-sm-2">
+                            <select class="form-control" name="District" id="District">
+                                <option value="null" selected>District</option>
+                                <option value="District-A">District A</option>
+                                <option value="District-B">District B</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-6 col-sm-2">
+                            <select class="form-control" name="Place" id="Place">
+                                <option value="null" selected>Place</option>
+                                <option value="1">Green zone</option>
+                            </select>
+                        </div>
+
+                        <div class="col-xs-6 col-sm-2">
+                            <select class="form-control" name="Service" id="Service">
+                                <option value="null" selected>Service</option>
+                                <option value="No-Service">Off service</option>
+                                <option value="Service">On service</option>
+                            </select>
+                        </div>
+
+                        <div class="col-xs-6 col-sm-1"></div>
+                        <div class="col-xs-6 col-sm-1">
+                            <input type="submit" value="Submit">
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div class="col-sm-1">
+                <button class="button-favorite" id="favorite" onclick="changeButton"></button>
+            </div>
+
+
+        </div>
+    </div>
+
+    </br>
+    </br>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="fountain">
+                    <button class="button-fountain">
+                        <h3>NOMBRE CALLE</h3>
+                    </button>
+                </div>
+                <div class="fountain">
+                    <button class="button-fountain">
+                        <h3>NOMBRE CALLE</h3>
+                    </button>
+                </div>
+                <div class="fountain">
+                    <button class="button-fountain">
+                        <h3>NOMBRE CALLE</h3>
+                    </button>
+                </div>
+                <div class="fountain">
+                    <button class="button-fountain">
+                        <h3>NOMBRE CALLE</h3>
+                    </button>
+                </div>
+                <div class="fountain">
+                    <button class="button-fountain">
+                        <h3>NOMBRE CALLE</h3>
+                    </button>
+                </div>
+                <div class="fountain">
+                    <button class="button-fountain">
+                        <h3>NOMBRE CALLE</h3>
+                    </button>
+                </div>
+                <div class="fountain">
+                    <button class="button-fountain">
+                        <h3>NOMBRE CALLE</h3>
+                    </button>
+                </div>
+                <div class="fountain">
+                    <button class="button-fountain">
+                        <h3>NOMBRE CALLE</h3>
+                    </button>
+                </div>
+                <div class="fountain">
+                    <button class="button-fountain">
+                        <h3>NOMBRE CALLE</h3>
+                    </button>
+                </div>
+                <div class="fountain">
+                    <button class="button-fountain">
+                        <h3>NOMBRE CALLE</h3>
+                    </button>
+                </div>
+                <div class="fountain">
+                    <button class="button-fountain">
+                        <h3>NOMBRE CALLE</h3>
+                    </button>
+                </div>
+                <div class="fountain">
+                    <button class="button-fountain">
+                        <h3>NOMBRE CALLE</h3>
+                    </button>
+                </div>
+
+            </div>
+            <div class="col-sm-6">
+                <div class="information-fountain">
+                    <h3>INFORMATION BOX</h3>
+                    <button>HOW TO GO</button>
+                    <button class="button-favorite" id="favorite-fountain" onclick="changeButton-fountain"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./main.js"></script>
+</body>
+
+</html>

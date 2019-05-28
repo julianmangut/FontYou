@@ -1,0 +1,47 @@
+.filter {
+    margin-top: 2%;
+    height: 100%;
+}
+
+option {
+    text-align: center;
+}
+
+.fountain {
+    margin-bottom: 3%;
+}
+
+.button-fountain {
+    width: 100%;
+    background: transparent;
+    border-radius: 15px;
+}
+
+.information-fountain {
+    border: 1px solid black;
+    margin-top: 20%;
+}
+
+.menu-fixed {
+    position:fixed;
+    z-index:1000;
+    top:0;
+    width: 77%;
+    margin-top: 1% !important;
+}
+
+.button-favorite {
+    background: url(./images/star-empty.png) no-repeat;
+    background-size: 100%;
+    width: 35px;
+    height: 35px;
+    border: none;
+}
+
+.button-favorite-on {
+    background: url(./images/star.png) no-repeat;
+    background-size: 100%;
+    width: 35px;
+    height: 35px;
+    border: none;
+}
