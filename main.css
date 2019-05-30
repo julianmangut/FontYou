@@ -56,3 +56,15 @@ button::first-letter {
     height: 35px;
     border: none;
 }
+
+#map-container {
+    height: 240px;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+#map {
+    height: 200px;  /* The height is 400 pixels */
+    width: 100%;  /* The width is the width of the web page */
+   }

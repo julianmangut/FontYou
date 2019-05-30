@@ -44,15 +44,51 @@ function chargeInformation (info) {
     
             var id = "#information-fountain";
 
+            var latitud = "";
+            var longitud = "";
+
+            latitud = respuesta.latitud;
+            var longitud = respuesta.longitud;
+
+            latitud = latitud.replace(/[.]/g, '');
+            longitud = longitud.replace(/[.]/g, '');
+
+            var numero = "";
+
+            for(var x = 0; x < latitud.length; x++) {
+                numero = numero + latitud.charAt(x);
+
+                if(x == 1) {
+                    numero += ".";
+                }
+            }
+
+            latitud = numero;
+            numero = "";
+
+            for(var x = 0; x < longitud.length; x++) {
+                numero = numero + longitud.charAt(x);
+
+                if(x == 1) {
+                    numero += ".";
+                }
+            }
+
+            longitud = numero;
+            
             $(id).css({ 'visibility': 'visible' });
 
             var information = '<h4> Direction: ' + respuesta.direccion + '</h4>' + 
             '<h4> State: ' + respuesta.estado + '</h4>' +
             '<h5> Zone: ' + respuesta.zona + '</h5>' + 
             '<h5> District: ' + respuesta.distrito + '</h5>' +
-            '<h5> Coordinate X: ' + respuesta.coord_x + '</h5>' + 
-            '<h5> Coordanate Y: ' + respuesta.coord_y + '</h5>' +
-            '<button> <a href="https://www.google.com/maps?q=40.4272429,-3.7086003">HOW TO GO</a></button>' + 
+            '<h5> Latitude: ' + latitud + '</h5>' + 
+            '<h5> Longitude: ' + longitud + '</h5>' +
+
+            '<div id="map"></div>' +
+            '<script type="text/javascript"> initMap(' + latitud + ',' + longitud + ') </script>' +
+
+            '<button> <a href="https://www.google.com/maps?q=' + latitud + ',' + longitud + '">HOW TO GO</a></button>' + 
             '<button class="button-favorite" id="favorite-fountain" onclick="changeButton-fountain"></button>'
 
             $(id).html(information);
@@ -65,6 +101,26 @@ function chargeInformation (info) {
     console.log(info);
 
 }
+
+function initMap(latitude, longitude) {
+    // The location of Uluru
+    /*var fountain1 = {lat: 40.4272429, lng: -3.7086003};
+    var fountain2 = {lat: 40.4287238, lng: -3.7101008}*/
+
+    var fountain = {lat: latitude, lng: longitude}
+
+    console.log(fountain);
+
+    // The map, centered at Uluru
+    var map = new google.maps.Map(
+        document.getElementById('map'), {zoom: 18, center: fountain});
+    // The marker, positioned at Uluru
+    /*var marker = new google.maps.Marker({position: fountain1, map: map});
+    var marker = new google.maps.Marker({position: fountain2, map: map});*/
+
+    var marker = new google.maps.Marker({position: fountain, map: map});
+    
+  }
 
 var active = false;
 
