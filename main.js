@@ -4,8 +4,12 @@ $(document).ready(function () {
     $(window).on('scroll', function () {
         if ($(window).scrollTop() > altura) {
             $('.filter').addClass('menu-fixed');
+            $('#information-fountain').removeClass('information-fountain');
+            $('#information-fountain').addClass('information-fountain-scroll');
         } else {
             $('.filter').removeClass('menu-fixed');
+            $('#information-fountain').removeClass('information-fountain-scroll');
+            $('#information-fountain').addClass('information-fountain');
         }
     });
 

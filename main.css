@@ -27,10 +27,15 @@ button::first-letter {
     border-radius: 15px;
 }
 
-#information-fountain {
+.information-fountain {
     border: 1px solid black;
-    margin-top: 20%;
     visibility: hidden;
+}
+
+.information-fountain-scroll {
+    border: 1px solid black;
+    visibility: hidden;
+    margin-top: 5%;
 }
 
 .menu-fixed {
@@ -39,6 +44,7 @@ button::first-letter {
     top:0;
     width: 77%;
     margin-top: 1% !important;
+    height: 0;
 }
 
 .button-favorite {
