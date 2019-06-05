@@ -1,0 +1,97 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: FontYou
+  description: Madrid Font API
+host: fontyou.herokuapp.com
+schemes:
+  - https
+basePath: /api
+paths:
+  /fountains:
+    get:
+      tags:
+        - fountain
+      summary: Get all fountains
+      responses:
+        '200':
+          description: Success response
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                _id:
+                  type: string
+                codigo:
+                  type: string
+                zona:
+                  type: string
+                distrito:
+                  type: string
+                direccion: 
+                  type: string
+                complemento:
+                  type: string
+                coord_x:
+                  type: string
+                coord_y:
+                  type: string
+                sistema_coordenadas:
+                  type: string
+                estado:
+                  type: string
+                observacion:
+                  type: string
+                fecha: 
+                  type: string
+                longitud:
+                  type: string
+                latitud:
+                  type: string
+  /fountains/{id}:
+      get:
+        tags:
+          - fountain
+        summary: Get fountain detailed information
+        parameters:
+        - in: path
+          name: id
+          required: true
+          type: string
+        responses:
+          '200':
+            description: Success response
+            schema:
+              type: object
+              properties:
+                _id:
+                  type: string
+                codigo:
+                  type: string
+                zona:
+                  type: string
+                distrito:
+                  type: string
+                direccion: 
+                  type: string
+                complemento:
+                  type: string
+                coord_x:
+                  type: string
+                coord_y:
+                  type: string
+                sistema_coordenadas:
+                  type: string
+                estado:
+                  type: string
+                observacion:
+                  type: string
+                fecha: 
+                  type: string
+                longitud:
+                  type: string
+                latitud:
+                  type: string
+
+
