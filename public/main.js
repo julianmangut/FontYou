@@ -16,7 +16,7 @@ $(document).ready(function () {
 });
 
 $.ajax({
-    url: 'http://127.0.0.1:3000/fountains',
+    url: '/fountains',
     success: function (respuesta) {
 
         var id = "#fountains";
@@ -43,7 +43,7 @@ $.ajax({
 
 function chargeInformation (info) {
     $.ajax({
-        url: 'http://127.0.0.1:3000/fountains/' + info,
+        url: '/fountains/' + info,
         success: function (respuesta) {
     
             var id = "#information-fountain";
