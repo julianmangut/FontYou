@@ -40,6 +40,7 @@ app.get('/', (req, res) => {
 });
 
 require('./app/routes/fountain.routes.js')(app);
+require('./app/routes/user.routes.js')(app);
 
 // listen for requests
 app.listen(port, () => {
