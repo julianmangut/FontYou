@@ -17,6 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
 app.use(cors());
+app.use(express.static('public')); // Here we define front-end directory
 
 // Configuring the database
 const mongoose = require('mongoose');
