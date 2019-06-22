@@ -106,6 +106,10 @@ function chargeInformation (info) {
 
 }
 
+function imprimirListaFuentes(respuesta){
+    
+}
+
 function initMap(latitude, longitude) {
     // The location of Uluru
     /*var fountain1 = {lat: 40.4272429, lng: -3.7086003};
@@ -153,6 +157,20 @@ function startFilter() {
 
     console.log("ME HE EJECUTADO");
 
+    $districts = $("#District");
+    $.ajax({
+        url: '/fountains/districts',
+        success: function (res) {
+            for(i=0; i<res.length; ++i){
+                $districts.append("<option value=\""+res[i]+"\">"+res[i]+"</option>");
+            }
+            console.log(res);
+        },
+        error: function(){
+            console.log("error loading fountain's districts")
+        }
+    });
+
     selectedLetter = "null";
     selectedDistrict = "null";
     selectedPlace = "null";
@@ -191,6 +209,55 @@ selectService.addEventListener('change',
 
 
 function createJson() {
+    $('#fountains').empty();
+
+    var selectedPlace = $('#Place').children('option:selected').val();
+    var selectedDistrict = $('#District').children('option:selected').val();
+    var selectedService = $('#Service').children('option:selected').val();
+    var direction = $('#Direction').val();
+
+    var url = "/fountains/";
+    var first = true;
+    var values = [direction, selectedDistrict, selectedPlace, selectedService];
+    var names = ["direccion", "distrito", "zona", "estado"];
+    for(i=0; i<4; ++i){
+        if(values[i]!=" "){
+            if(first){
+                first = false;
+                url+="?";
+            }
+            else{
+                url+="&";
+            }
+            url+=names[i]+"="+values[i];
+        }
+    }
+
+    console.log(url);
+
+    $.ajax({
+        url: url,
+        success: function (respuesta) {
+            var id = "#fountains";
+            var fountains = '';
+
+            for(var x = 0; x < 50; x++) {
+
+                fountains = fountains + '<div>' +
+                '<button class="button-fountain fountain" id="' + respuesta[x]._id + '" onclick="chargeInformation(this.id)">' +
+                    '<h3>' + respuesta[x].direccion + '</h3>' +
+                '</button>' + 
+            '</div>'
+            }
+
+            console.log("HE TERMINADO");
+
+            $(id).html(fountains);
+        },
+        error: function(){
+            console.log("error loading fountain's districts")
+        }
+    });
 
     var datos = [];
     var objeto = {};
