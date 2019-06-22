@@ -14,6 +14,8 @@ const FountainSchema = mongoose.Schema({
     fecha: Date,
     longitud: String,
     latitud: String    
+},{
+    strict: false
 });
 
 module.exports = mongoose.model('Fountain', FountainSchema);
