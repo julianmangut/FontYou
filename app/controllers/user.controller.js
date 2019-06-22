@@ -1,18 +1,24 @@
 
-exports.getUsers = (req, res) => {
+exports.signUp = (req, res) => {
     res.status(200).json({
-        txt: "get Users"
+        txt: "user sign up"
     });
 };
 
-exports.getUserFavourites = (req, res) => {
+exports.signIn = (req, res) => {
     res.status(200).json({
-        txt: "get user favourites"
+        txt: "user sign in"
+    });
+}
+
+exports.favourites = (req, res) => {
+    res.status(200).json({
+        txt: "get user favourite's fountains"
     });
 }
 
 exports.addOrRemoveToFavourites = (req, res) => {
     res.status(200).json({
-        txt: "add or remove from favourites"
-    });
+        txt: "added/removed fountain to favourites"
+    })
 }
