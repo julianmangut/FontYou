@@ -1,4 +1,5 @@
 const User = require('../models/user.model');
+const Fountain = require('../models/fountain.model');
 
 exports.signUp = async (req, res) => {
     const email = req.body.email;
@@ -29,13 +30,17 @@ exports.signIn = async (req, res) => {
 }
 
 exports.favourites = (req, res) => {
+    const email = req.query.email;
     res.status(200).json({
-        txt: "get user favourite's fountains"
+        txt: "get "+email+ " favourite's fountains"
     });
 }
 
-exports.addOrRemoveToFavourites = (req, res) => {
+exports.addOrRemoveToFavourites = async (req, res) => {
+    const email = req.query.email;
+    const fountain = req.params.fountainId;
+
     res.status(200).json({
-        txt: "added/removed fountain to favourites"
+        txt: "added/removed fountain: "+fountain+ " to " + email
     })
 }
