@@ -29,10 +29,11 @@ exports.signIn = async (req, res) => {
     });
 }
 
-exports.favourites = (req, res) => {
+exports.favourites = async(req, res) => {
     const email = req.query.email;
+    const user = await User.findOne({email});
     res.status(200).json({
-        txt: "get "+email+ " favourite's fountains"
+        favourites: user.favourites
     });
 }
 
