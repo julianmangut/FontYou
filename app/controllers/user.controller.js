@@ -39,22 +39,14 @@ exports.favourites = (req, res) => {
 exports.addOrRemoveToFavourites = async (req, res) => {
     const email = req.query.email;
     const fountainId = req.params.fountainId;
-
-    try {
-        await User.updateOne({
-            email
-        },{
-            $push: {
-                favourites: fountainId
-            }
-        });
-
-    } catch (error) {
-        console.log(error);
-    }
     
+    var user = await User.findOne({email});
+    if(user.favourites.includes(fountainId)){
+        await User.updateOne({email},{$pull:{favourites: fountainId}});
+    }
+    else await User.updateOne({email},{$push:{favourites: fountainId}});
 
-    const user = await User.findOne({email});
+    user = await User.findOne({email});
     res.status(200).json({
         user
     })
