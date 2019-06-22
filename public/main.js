@@ -21,8 +21,9 @@ $.ajax({
 
         var id = "#fountains";
         var fountains = '';
-
-        for(var x = 0; x < 50; x++) {
+        var limit= 50;
+        if (respuesta.length < 50 ) limit = respuesta.length;
+        for(var x = 0; x < limit; x++) {
 
             fountains = fountains + '<div>' +
             '<button class="button-fountain fountain" id="' + respuesta[x]._id + '" onclick="chargeInformation(this.id)">' +
@@ -214,13 +215,12 @@ function createJson() {
     var selectedPlace = $('#Place').children('option:selected').val();
     var selectedDistrict = $('#District').children('option:selected').val();
     var selectedService = $('#Service').children('option:selected').val();
-    var direction = $('#Direction').val();
 
     var url = "/fountains/";
     var first = true;
-    var values = [direction, selectedDistrict, selectedPlace, selectedService];
-    var names = ["direccion", "distrito", "zona", "estado"];
-    for(i=0; i<4; ++i){
+    var values = [selectedDistrict, selectedPlace, selectedService];
+    var names = ["distrito", "zona", "estado"];
+    for(i=0; i<values.length; ++i){
         if(values[i]!=" "){
             if(first){
                 first = false;
@@ -238,10 +238,12 @@ function createJson() {
     $.ajax({
         url: url,
         success: function (respuesta) {
+            console.log(respuesta);
             var id = "#fountains";
             var fountains = '';
-
-            for(var x = 0; x < 50; x++) {
+            var limit= 50;
+            if (respuesta.length < 50 ) limit = respuesta.length;
+            for(var x = 0; x < limit; x++) {
 
                 fountains = fountains + '<div>' +
                 '<button class="button-fountain fountain" id="' + respuesta[x]._id + '" onclick="chargeInformation(this.id)">' +
