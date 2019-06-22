@@ -1,13 +1,30 @@
+const User = require('../models/user.model');
 
-exports.signUp = (req, res) => {
+exports.signUp = async (req, res) => {
+    const email = req.body.email;
+    const password = req.body.password;
+
+    const user = await User.create({
+        email,
+        password
+    });
+
     res.status(200).json({
-        txt: "user sign up"
+        user
     });
 };
 
-exports.signIn = (req, res) => {
+exports.signIn = async (req, res) => {
+    const email = req.body.email;
+    const password = req.body.password;
+
+    const user = await User.findOne({
+        email,
+        password
+    });
+
     res.status(200).json({
-        txt: "user sign in"
+        user
     });
 }
 
