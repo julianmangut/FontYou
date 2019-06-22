@@ -59,3 +59,9 @@ exports.findOne = (req, res) => {
     });
 };
 
+exports.getDistricts = async (req, res) => {
+   const districts = await Fountain.distinct("distrito");
+
+   res.status(200).json(districts);
+}
+
