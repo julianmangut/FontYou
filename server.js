@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const morgan = require('morgan')
 var cors = require('cors');
 
 process.env.NODE_ENV = 'production';
@@ -13,6 +14,7 @@ const app = express();
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(morgan('dev'))
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json());

@@ -15,12 +15,18 @@ const params = {
         distrito: "RETIRO"
     }
 */
-exports.findAll = (req, res) => {
-    const params = {
-        
+exports.findAll = async (req, res) => {
+    var filters = req.query;
+    var direccion = " ";
+    if("direccion" in filters) {
+        direccion = filters.direccion;
+        delete filters.direccion;
     }
-    Fountain.find(
-        params
+
+    await Fountain.find({
+        "direccion": { "$regex": direccion, "$options": "i" },
+        ...filters
+    }
     )
     .then(fountains => {
         res.send(fountains);
