@@ -8,6 +8,11 @@ $.urlParam = function (name) {
 }
 
 
+var favourites = [];
+
+loadFavourites();
+
+
 $(document).ready(function () {
     var altura = $('.filter').offset().top;
 
@@ -31,32 +36,60 @@ $.ajax({
 
         var id = "#fountains";
         var fountains = '';
-        var limit= 50;
-        if (respuesta.length < 50 ) limit = respuesta.length;
-        for(var x = 0; x < limit; x++) {
+        var limit = 50;
+        if (respuesta.length < 50) limit = respuesta.length;
+        for (var x = 0; x < limit; x++) {
 
             fountains = fountains + '<div>' +
-            '<button class="button-fountain fountain" id="' + respuesta[x]._id + '" onclick="chargeInformation(this.id)">' +
+                '<button class="button-fountain fountain" id="' + respuesta[x]._id + '" onclick="chargeInformation(this.id)">' +
                 '<h3>' + respuesta[x].direccion + '</h3>' +
-            '</button>' + 
-        '</div>'
+                '</button>' +
+                '</div>'
         }
-
-        console.log("HE TERMINADO");
 
         $(id).html(fountains);
     },
-    error: function () {
-        console.log("ERROR EN CARGA");
+    error: function (respond) {
+        console.log("Error");
+        console.log(respond);
     }
 });
 
+function loadInformationFountains() {
+    $.ajax({
+        url: '/fountains',
+        success: function (respuesta) {
 
-function chargeInformation (info) {
+            var id = "#fountains";
+            var fountains = '';
+            var limit = 50;
+            if (respuesta.length < 50) limit = respuesta.length;
+            for (var x = 0; x < limit; x++) {
+
+                fountains = fountains + '<div>' +
+                    '<button class="button-fountain fountain" id="' + respuesta[x]._id + '" onclick="chargeInformation(this.id)">' +
+                    '<h3>' + respuesta[x].direccion + '</h3>' +
+                    '</button>' +
+                    '</div>'
+            }
+
+            $(id).html(fountains);
+        },
+        error: function (respond) {
+            console.log("Error");
+            console.log(respond);
+        }
+    });
+}
+
+
+var openFountain;
+
+function chargeInformation(info) {
     $.ajax({
         url: '/fountains/' + info,
         success: function (respuesta) {
-    
+
             var id = "#information-fountain";
 
             var latitud = "";
@@ -70,10 +103,10 @@ function chargeInformation (info) {
 
             var numero = "";
 
-            for(var x = 0; x < latitud.length; x++) {
+            for (var x = 0; x < latitud.length; x++) {
                 numero = numero + latitud.charAt(x);
 
-                if(x == 1) {
+                if (x == 1) {
                     numero += ".";
                 }
             }
@@ -81,30 +114,52 @@ function chargeInformation (info) {
             latitud = numero;
             numero = "";
 
-            for(var x = 0; x < longitud.length; x++) {
+            for (var x = 0; x < longitud.length; x++) {
                 numero = numero + longitud.charAt(x);
 
-                if(x == 1) {
+                if (x == 1) {
                     numero += ".";
                 }
             }
 
             longitud = numero;
-            
-            $(id).css({ 'visibility': 'visible' });
 
-            var information = '<h4> Direction: ' + respuesta.direccion + '</h4>' + 
-            '<h4> State: ' + respuesta.estado + '</h4>' +
-            '<h5> Zone: ' + respuesta.zona + '</h5>' + 
-            '<h5> District: ' + respuesta.distrito + '</h5>' +
-            '<h5> Latitude: ' + latitud + '</h5>' + 
-            '<h5> Longitude: ' + longitud + '</h5>' +
+            var favourite = false;
 
-            '<div id="map"></div>' +
-            '<script type="text/javascript"> initMap(' + latitud + ',' + longitud + ') </script>' +
+            console.log(favourites);
 
-            '<button> <a href="https://www.google.com/maps?q=' + latitud + ',' + longitud + '">HOW TO GO</a></button>' + 
-            '<button class="button-favorite" id="favorite-fountain" onclick="changeButton-fountain"></button>'
+            for (var x = 0; x < favourites.length; x++) {
+                if (info == favourites[x]) {
+                    favourite = true;
+                }
+            }
+
+            console.log(favourite);
+
+            $(id).css({
+                'visibility': 'visible'
+            });
+
+            var information = '<h4> Direction: ' + respuesta.direccion + '</h4>' +
+                '<h4> State: ' + respuesta.estado + '</h4>' +
+                '<h5> Zone: ' + respuesta.zona + '</h5>' +
+                '<h5> District: ' + respuesta.distrito + '</h5>' +
+                '<h5> Latitude: ' + latitud + '</h5>' +
+                '<h5> Longitude: ' + longitud + '</h5>' +
+
+                '<div id="map"></div>' +
+                '<script type="text/javascript"> initMap(' + latitud + ',' + longitud + ') </script>' +
+
+                '<button> <a href="https://www.google.com/maps?q=' + latitud + ',' + longitud + '">HOW TO GO</a></button>'
+
+            if (favourite == false) {
+                information = information +
+                    '<button class="button-favorite" id="favoriteButton_' + info + '" onclick="changeButtonFountain();"></button>';
+            } else {
+                information = information + '<button class="button-favorite button-favorite-on" id="favoriteButton_' + info + '" onclick="changeButtonFountain();"></button>';
+            }
+
+            openFountain = info;
 
             $(id).html(information);
         },
@@ -117,29 +172,34 @@ function chargeInformation (info) {
 
 }
 
-function imprimirListaFuentes(respuesta){
-    
-}
-
 function initMap(latitude, longitude) {
     // The location of Uluru
     /*var fountain1 = {lat: 40.4272429, lng: -3.7086003};
     var fountain2 = {lat: 40.4287238, lng: -3.7101008}*/
 
-    var fountain = {lat: latitude, lng: longitude}
+    var fountain = {
+        lat: latitude,
+        lng: longitude
+    }
 
     console.log(fountain);
 
     // The map, centered at Uluru
     var map = new google.maps.Map(
-        document.getElementById('map'), {zoom: 18, center: fountain});
+        document.getElementById('map'), {
+            zoom: 18,
+            center: fountain
+        });
     // The marker, positioned at Uluru
     /*var marker = new google.maps.Marker({position: fountain1, map: map});
     var marker = new google.maps.Marker({position: fountain2, map: map});*/
 
-    var marker = new google.maps.Marker({position: fountain, map: map});
-    
-  }
+    var marker = new google.maps.Marker({
+        position: fountain,
+        map: map
+    });
+
+}
 
 var active = false;
 
@@ -151,10 +211,30 @@ function myFunction() {
 
     if (active == false) {
         $('#favorite').addClass('button-favorite-on');
+        favoriteFountains();
         active = true;
     } else {
         $('#favorite').removeClass('button-favorite-on');
+        loadInformationFountains();
         active = false;
+    }
+}
+
+function changeButtonFountain() {
+
+    var found = false;
+
+    for (var x = 0; x < favourites.length && found == false; x++) {
+        if (favourites[x] == openFountain) {
+            $('#favoriteButton_' + openFountain).removeClass('button-favorite-on');
+            setEliminateFavourite(openFountain);
+            found = true;
+        }
+    }
+    console.log(found);
+    if (found == false) {
+        $('#favoriteButton_' + openFountain).addClass('button-favorite-on');
+        setEliminateFavourite(openFountain);
     }
 }
 
@@ -172,12 +252,12 @@ function startFilter() {
     $.ajax({
         url: '/fountains/districts',
         success: function (res) {
-            for(i=0; i<res.length; ++i){
-                $districts.append("<option value=\""+res[i]+"\">"+res[i]+"</option>");
+            for (i = 0; i < res.length; ++i) {
+                $districts.append("<option value=\"" + res[i] + "\">" + res[i] + "</option>");
             }
             console.log(res);
         },
-        error: function(){
+        error: function () {
             console.log("error loading fountain's districts")
         }
     });
@@ -230,16 +310,15 @@ function createJson() {
     var first = true;
     var values = [selectedDistrict, selectedPlace, selectedService];
     var names = ["distrito", "zona", "estado"];
-    for(i=0; i<values.length; ++i){
-        if(values[i]!=" "){
-            if(first){
+    for (i = 0; i < values.length; ++i) {
+        if (values[i] != " ") {
+            if (first) {
                 first = false;
-                url+="?";
+                url += "?";
+            } else {
+                url += "&";
             }
-            else{
-                url+="&";
-            }
-            url+=names[i]+"="+values[i];
+            url += names[i] + "=" + values[i];
         }
     }
 
@@ -251,22 +330,22 @@ function createJson() {
             console.log(respuesta);
             var id = "#fountains";
             var fountains = '';
-            var limit= 50;
-            if (respuesta.length < 50 ) limit = respuesta.length;
-            for(var x = 0; x < limit; x++) {
+            var limit = 50;
+            if (respuesta.length < 50) limit = respuesta.length;
+            for (var x = 0; x < limit; x++) {
 
                 fountains = fountains + '<div>' +
-                '<button class="button-fountain fountain" id="' + respuesta[x]._id + '" onclick="chargeInformation(this.id)">' +
+                    '<button class="button-fountain fountain" id="' + respuesta[x]._id + '" onclick="chargeInformation(this.id)">' +
                     '<h3>' + respuesta[x].direccion + '</h3>' +
-                '</button>' + 
-            '</div>'
+                    '</button>' +
+                    '</div>'
             }
 
             console.log("HE TERMINADO");
 
             $(id).html(fountains);
         },
-        error: function(){
+        error: function () {
             console.log("error loading fountain's districts")
         }
     });
@@ -285,4 +364,81 @@ function createJson() {
     console.log(JSON.stringify(objeto));
 
     $("#res").text(JSON.stringify(objeto));
+
+}
+
+function loadFavourites() {
+    $.ajax({
+        type: "GET",
+        url: "/user/favourites/?email=" + $.urlParam("email"),
+        sync: true,
+        success: function (respond) {
+
+            favourites = [];
+
+            for (var x = 0; x < respond.favourites.length; x++) {
+                favourites.push(respond.favourites[x]);
+            }
+
+        },
+        error: function (respond) {
+            console.log("Error");
+            console.log(respond);
+        }
+    })
+}
+
+function setEliminateFavourite(id) {
+    $.ajax({
+        type: "POST",
+        url: "/user/favourites/" + id + "/?email=" + $.urlParam("email"),
+        success: function (respond) {},
+        error: function (respond) {
+            console.log("Error");
+            console.log(respond);
+        }
+    })
+}
+
+function favoriteFountains() {
+
+
+    loadFavourites();
+
+    $.ajax({
+        type: "GET",
+        url: '/fountains',
+        success: function (respond) {
+            var id = "#fountains";
+            var fountains = '';
+
+            var found = false;
+
+            for (var x = 0; x < favourites.length; x++) {
+
+                for (var y = 0; y < respond.length && found == false; y++) {
+
+                    if (favourites[x] == respond[y]._id) {
+                        found = true;
+
+                        fountains = fountains + '<div>' +
+                            '<button class="button-fountain fountain" id="' + respond[y]._id + '" onclick="chargeInformation(this.id)">' +
+                            '<h3>' + respond[y].direccion + '</h3>' +
+                            '</button>' +
+                            '</div>'
+                    }
+                }
+                console.log(found);
+                found = false;
+
+            }
+
+            $(id).html(fountains);
+        },
+        error: function (respond) {
+            console.log("Error");
+            console.log(respond);
+        }
+
+    });
 }
