@@ -5,84 +5,32 @@
     <title>FontYou</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="./main.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./index.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 
-<body onload="startFilter()">
-
-    <div class="container">
-        <div class="row filter">
-            <form class="col-sm-11" id="filter" name="filter" action="javascript:createJson()">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-6 col-sm-2">
-                            <input class="form-control" type="text" value="direction" id="Direction">
-                        </div>
-                        <div class="col-xs-6 col-sm-2">
-                            <select class="form-control" name="District" id="District">
-                                <option value=" " selected>District</option>
-                            </select>
-                        </div>
-                        <div class="col-xs-6 col-sm-2">
-                            <select class="form-control" name="Place" id="Place">
-                                <option value=" " selected>Place</option>
-                                <option value="ZV">Green zone</option>
-                                <option value="VP">Street</option>
-                            </select>
-                        </div>
-
-                        <div class="col-xs-6 col-sm-2">
-                            <select class="form-control" name="Service" id="Service">
-                                <option value=" " selected>Service</option>
-                                <option value="EN SERVICIO">On service</option>
-                                <option value="FUERA DE SERVICIO">Off service</option>
-                            </select>
-                        </div>
-
-                        <div class="col-xs-6 col-sm-1"></div>
-                        <div class="col-xs-6 col-sm-1">
-                            <input type="submit" value="Submit">
-                        </div>
-                    </div>
-                </div>
-            </form>
-
-            <div class="col-sm-1">
-                <button class="button-favorite" id="favorite" onclick="changeButton"></button>
-            </div>
-
-
-        </div>
-    </div>
-
-    </br>
-    </br>
+<body>
 
     <div class="container">
         <div class="row">
-            <div class="col-xs-6 col-sm-6" id="fountains">
-               
+            <div class="col-xs-12" id="containerLogo">
+                <img id="logo" src="./Images/logo2_white.png">
             </div>
-            <div class="col-xs-6 col-sm-6">
-                <div class="information-fountain jumbotron position-fixed" id="information-fountain">
-                       <!-- <iframe id="map-container" frameborder="0" style="border:0"
-                        src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJOwg_06VPwokRYv534QaPC8g&key=AIzaSyCu5meooH0dZeSEoL1huuSEwuNaHGDCTiQ" >
-                    </iframe>-->
-                    
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFY3AS7CoN1rLKeFLxDxQQj9bFHvQWq8U&callback=initMap">
-    </script>
-                            
+            <div id="containerButtons">
+                <div class="col-xs-6">
+                    <button id="register" class="btn btn-primary" onclick="chargeForm(this.id);">Register</button>
+                </div>
+                <div class="col-xs-6">
+                    <button id="login" class="btn btn-success" onclick="chargeForm(this.id);">Login</button>
                 </div>
             </div>
+
         </div>
     </div>
 
-    <script src="./main.js"></script>
-    
-</body>
+    <script src="./index.js"></script>
 
-</html>
+</body>
