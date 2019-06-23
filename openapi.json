@@ -1,0 +1,468 @@
+{
+    "openapi" : "3.0.0",
+    "info" : {
+      "title" : "FontYou",
+      "description" : "API with all the Madrid public fountain information",
+      "contact" : { },
+      "version" : "1.0"
+    },
+    "servers" : [ {
+      "url" : "https://font-you.herokuapp.com"
+    }, {
+      "url" : "http://localhost:3000"
+    } ],
+    "tags" : [ {
+      "name" : "User"
+    } ],
+    "paths" : {
+      "/user/signUp" : {
+        "post" : {
+          "tags" : [ "User" ],
+          "summary" : "signUp",
+          "description" : "Sign Up the specified user into the system",
+          "operationId" : "SignUp",
+          "parameters" : [ ],
+          "requestBody" : {
+            "description" : "User credentials",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/body"
+                },
+                "example" : {
+                  "email" : "victor@victor.com",
+                  "password" : "passwordvictor"
+                }
+              }
+            },
+            "required" : true
+          },
+          "responses" : {
+            "200" : {
+              "content" : {
+                "application/json" : {
+                  "schema" : {
+                    "$ref" : "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          },
+          "deprecated" : false
+        }
+      },
+      "/user/signIn" : {
+        "post" : {
+          "tags" : [ "User" ],
+          "summary" : "signIn",
+          "description" : "Sign In the specified user into the system",
+          "operationId" : "SignIn",
+          "parameters" : [ ],
+          "requestBody" : {
+            "description" : "User credentials",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/body_1"
+                },
+                "example" : {
+                  "email" : "victor@victor.com",
+                  "password" : "passwordvictor"
+                }
+              }
+            },
+            "required" : true
+          },
+          "responses" : {
+            "200" : {
+              "content" : {
+                "application/json" : {
+                  "schema" : {
+                    "$ref" : "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          },
+          "deprecated" : false
+        }
+      },
+      "/user/favourites/{fountainId}/" : {
+        "post" : {
+          "tags" : [ "User" ],
+          "summary" : "setFavourites",
+          "description" : "Add or remove the specified fountain to/from users' favorites list.\nIf the fountain is already on the favorites list it will be removed.\nIf the fountain is not in the favorites list, it will be added.",
+          "operationId" : "SetFavourites",
+          "parameters" : [ {
+            "name" : "email",
+            "in" : "query",
+            "description" : "Email of the user",
+            "required" : true,
+            "style" : "form",
+            "explode" : true,
+            "schema" : {
+              "type" : "string",
+              "example" : "victor@victor.com"
+            }
+          }, {
+            "name" : "fountainId",
+            "in" : "path",
+            "description" : "Fountain ID to add or remove from favourites",
+            "required" : true,
+            "style" : "simple",
+            "explode" : false,
+            "schema" : {
+              "type" : "string"
+            }
+          } ],
+          "responses" : {
+            "200" : {
+              "content" : {
+                "application/json" : {
+                  "schema" : {
+                    "$ref" : "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          },
+          "deprecated" : false
+        }
+      },
+      "/user/favourites/" : {
+        "get" : {
+          "tags" : [ "User" ],
+          "summary" : "getFavourites",
+          "description" : "Get the ID of all the favorites fountains of the user",
+          "operationId" : "GetFavourites",
+          "parameters" : [ {
+            "name" : "email",
+            "in" : "query",
+            "description" : "Email of the user we want to get the favourites fountains",
+            "required" : true,
+            "style" : "form",
+            "explode" : true,
+            "schema" : {
+              "type" : "string",
+              "example" : "victor@victor.com"
+            }
+          } ],
+          "responses" : {
+            "200" : {
+              "content" : {
+                "text/plain" : {
+                  "schema" : {
+                    "type" : "object",
+                    "example" : "{\n    \"favourites\": [\n        \"23\",\n        \"30\",\n        \"25\",\n        \"345\"\n    ]\n}"
+                  },
+                  "example" : "{\n    \"favourites\": [\n        \"23\",\n        \"30\",\n        \"25\",\n        \"345\"\n    ]\n}"
+                }
+              }
+            }
+          },
+          "deprecated" : false
+        }
+      },
+      "/fountains/{fountainId}" : {
+        "get" : {
+          "tags" : [ "Fountain" ],
+          "summary" : "getFountainsId",
+          "description" : "Get single fountain information",
+          "operationId" : "GetFountainsId",
+          "parameters" : [ {
+            "name" : "fountainId",
+            "in" : "path",
+            "description" : "Identifier of the fountain",
+            "required" : true,
+            "style" : "simple",
+            "explode" : false,
+            "schema" : {
+              "type" : "string"
+            }
+          } ],
+          "responses" : {
+            "200" : {
+              "content" : {
+                "application/json" : {
+                  "schema" : {
+                    "$ref" : "#/components/schemas/Fountain"
+                  }
+                }
+              }
+            }
+          },
+          "deprecated" : false
+        }
+      },
+      "/fountains/" : {
+        "get" : {
+          "tags" : [ "Fountain" ],
+          "summary" : "getFountains",
+          "description" : "Get all the fountains that meet the parameters",
+          "operationId" : "GetFountains",
+          "parameters" : [ {
+            "name" : "direccion",
+            "in" : "query",
+            "description" : "Address of the fountain",
+            "required" : false,
+            "style" : "form",
+            "explode" : true,
+            "schema" : {
+              "type" : "string",
+              "example" : "JARDIN"
+            }
+          }, {
+            "name" : "zona",
+            "in" : "query",
+            "description" : "Type of zone where fountain is located. ZV: green zone, VP: public street",
+            "required" : false,
+            "style" : "form",
+            "explode" : true,
+            "schema" : {
+              "type" : "string",
+              "example" : "ZV"
+            }
+          }, {
+            "name" : "distrito",
+            "in" : "query",
+            "description" : "District where fountain is located",
+            "required" : false,
+            "style" : "form",
+            "explode" : true,
+            "schema" : {
+              "type" : "string",
+              "example" : "SALAMANCA"
+            }
+          }, {
+            "name" : "estado",
+            "in" : "query",
+            "description" : "Fountain's status",
+            "required" : false,
+            "style" : "form",
+            "explode" : true,
+            "schema" : {
+              "type" : "string",
+              "example" : "EN SERVICIO"
+            }
+          } ],
+          "responses" : {
+            "200" : {
+              "content" : {
+                "application/json" : {
+                  "schema" : {
+                    "$ref" : "#/components/schemas/Fountain"
+                  },
+                  "example" : [ {
+                    "_id" : "5cefe7e9a9072bbcaace9e58",
+                    "codigo" : "FUE_02-04_0000000008",
+                    "zona" : "ZV",
+                    "distrito" : "SALAMANCA",
+                    "direccion" : "JARDINES GREGORIO ORDO—EZ",
+                    "complemento" : "C/PRINCIPE DE VERGARA C/V C/ MALDONADO",
+                    "coord_x" : 442407.6831,
+                    "coord_y" : 4476045.523,
+                    "sistema_coordenadas" : "ETRS89 / UTM  Zona 30N",
+                    "estado" : "EN SERVICIO",
+                    "fecha" : "2019-01-03T23:00:00.000Z",
+                    "longitud" : "-36.790.078",
+                    "latitud" : "404.330.577"
+                  }, {
+                    "_id" : "5cefe7e9a9072bbcaace9e59",
+                    "codigo" : "FUE_02-04_0000000007",
+                    "zona" : "ZV",
+                    "distrito" : "SALAMANCA",
+                    "direccion" : "JARDINES GREGORIO ORDO—EZ",
+                    "complemento" : "C/PRINCIPE DE VERGARA C/V C/ MALDONADO",
+                    "coord_x" : 442427.7633,
+                    "coord_y" : 4476067.583,
+                    "sistema_coordenadas" : "ETRS89 / UTM  Zona 30N",
+                    "estado" : "EN SERVICIO",
+                    "fecha" : "2019-01-03T23:00:00.000Z",
+                    "longitud" : "-36.787.731",
+                    "latitud" : "404.332.578"
+                  }, {
+                    "_id" : "5cefe7e9a9072bbcaace9e67",
+                    "codigo" : "FUE_02-04_0000000021",
+                    "zona" : "ZV",
+                    "distrito" : "SALAMANCA",
+                    "direccion" : "JARDINES BOSTON",
+                    "complemento" : "PLAZA BOSTON N 4",
+                    "coord_x" : 443525.6377,
+                    "coord_y" : 4476484.02,
+                    "sistema_coordenadas" : "ETRS89 / UTM  Zona 30N",
+                    "estado" : "EN SERVICIO",
+                    "fecha" : "2019-01-03T23:00:00.000Z",
+                    "longitud" : "-3.665.867",
+                    "latitud" : "404.370.846"
+                  }, {
+                    "_id" : "5cefe7e9a9072bbcaace9e6b",
+                    "codigo" : "FUE_02-04_0000000026",
+                    "zona" : "ZV",
+                    "distrito" : "SALAMANCA",
+                    "direccion" : "JARDIN DE LA VIRGEN DEL PILAR",
+                    "complemento" : "C/GENERAL PARDI—AS CV C/JUAN BRAVO",
+                    "coord_x" : 442498.1789,
+                    "coord_y" : 4475963.332,
+                    "sistema_coordenadas" : "ETRS89 / UTM  Zona 30N",
+                    "estado" : "EN SERVICIO",
+                    "fecha" : "2019-01-03T23:00:00.000Z",
+                    "longitud" : "-36.779.335",
+                    "latitud" : "404.323.235"
+                  } ]
+                }
+              }
+            }
+          },
+          "deprecated" : false
+        }
+      }
+    },
+    "components" : {
+      "schemas" : {
+        "User" : {
+          "title" : "User",
+          "required" : [ "_id", "email" ],
+          "type" : "object",
+          "properties" : {
+            "favourites" : {
+              "type" : "array",
+              "description" : "Array with the ID of the user favourites fountains",
+              "items" : {
+                "type" : "object"
+              }
+            },
+            "email" : {
+              "type" : "string",
+              "description" : "User's email"
+            },
+            "_id" : {
+              "type" : "string",
+              "description" : "User's id"
+            }
+          },
+          "description" : "user model",
+          "example" : {
+            "user" : {
+              "favourites" : [ 23, 30, 25, 345 ],
+              "_id" : "5d0e356ca5611107bafffac9",
+              "email" : "victor@victor.com",
+              "password" : "passwordvictor",
+              "__v" : 0
+            }
+          }
+        },
+        "Fountain" : {
+          "title" : "Fountain",
+          "required" : [ "_id", "codigo", "coord_x", "coord_y", "direccion", "distrito", "estado", "fecha", "latitude", "longitud", "sistema_coordenadas", "zona" ],
+          "type" : "object",
+          "properties" : {
+            "_id" : {
+              "type" : "string",
+              "description" : "Fountain ID"
+            },
+            "codigo" : {
+              "type" : "string",
+              "description" : "Fountain code"
+            },
+            "zona" : {
+              "type" : "string",
+              "description" : "Zone type where the fountain is. ZV: green zone, VP: street"
+            },
+            "distrito" : {
+              "type" : "string",
+              "description" : "District where the fountain is"
+            },
+            "direccion" : {
+              "type" : "string",
+              "description" : "Address of the fountain"
+            },
+            "complemento" : {
+              "type" : "string",
+              "description" : "Additional information to complement the address"
+            },
+            "coord_x" : {
+              "type" : "integer",
+              "description" : "Coordinate X of the fountain location",
+              "format" : "int32"
+            },
+            "coord_y" : {
+              "type" : "string",
+              "description" : "Coordinate Y of the fountain location"
+            },
+            "sistema_coordenadas" : {
+              "type" : "string",
+              "description" : "Coordinate system"
+            },
+            "estado" : {
+              "type" : "string",
+              "description" : "Fountain status. Can be EN SERVICIO: available, FUERA DE SERVICIO: unavailable"
+            },
+            "observacion" : {
+              "type" : "string",
+              "description" : "Any additional information about the fountain's status"
+            },
+            "fecha" : {
+              "type" : "string",
+              "description" : "Date of the las update of fountain's information",
+              "format" : "date"
+            },
+            "longitud" : {
+              "type" : "integer",
+              "description" : "Longitude of the fountain's location",
+              "format" : "int32"
+            },
+            "latitude" : {
+              "type" : "string",
+              "description" : "Latitude of the fountain's location"
+            }
+          },
+          "description" : "Fountain model",
+          "example" : {
+            "_id" : "5cefe7e9a9072bbcaace9e58",
+            "codigo" : "FUE_02-04_0000000008",
+            "zona" : "ZV",
+            "distrito" : "SALAMANCA",
+            "direccion" : "JARDINES GREGORIO ORDO—EZ",
+            "complemento" : "C/PRINCIPE DE VERGARA C/V C/ MALDONADO",
+            "coord_x" : 442407.6831,
+            "coord_y" : 4476045.523,
+            "sistema_coordenadas" : "ETRS89 / UTM  Zona 30N",
+            "estado" : "EN SERVICIO",
+            "fecha" : "2019-01-03T23:00:00.000Z",
+            "longitud" : "-36.790.078",
+            "latitud" : "404.330.577"
+          }
+        },
+        "body" : {
+          "type" : "object",
+          "properties" : {
+            "email" : {
+              "type" : "string"
+            },
+            "password" : {
+              "type" : "string"
+            }
+          },
+          "example" : {
+            "email" : "victor@victor.com",
+            "password" : "passwordvictor"
+          }
+        },
+        "body_1" : {
+          "type" : "object",
+          "properties" : {
+            "email" : {
+              "type" : "string"
+            },
+            "password" : {
+              "type" : "string"
+            }
+          },
+          "example" : {
+            "email" : "victor@victor.com",
+            "password" : "passwordvictor"
+          }
+        }
+      }
+    }
+  }

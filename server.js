@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const morgan = require('morgan')
+const morgan = require('morgan');
+var swaggerUi = require('swagger-ui-express');
+var swaggerDocument = require('./openapi.json');
 var cors = require('cors');
 
 process.env.NODE_ENV = 'production';
@@ -15,6 +17,8 @@ const app = express();
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan('dev'))
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
