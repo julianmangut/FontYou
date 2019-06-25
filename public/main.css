@@ -48,7 +48,7 @@ button::first-letter {
 }
 
 .button-favorite {
-    background: url(./images/star-empty.png) no-repeat;
+    background: url(./Images/star-empty.png) no-repeat;
     background-size: 100%;
     width: 35px;
     height: 35px;
@@ -56,7 +56,7 @@ button::first-letter {
 }
 
 .button-favorite-on {
-    background: url(./images/star.png) no-repeat;
+    background: url(./Images/star.png) no-repeat;
     background-size: 100%;
     width: 35px;
     height: 35px;
