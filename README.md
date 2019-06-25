@@ -3,7 +3,7 @@ FontYou is a project for the [Project and Service Design course from Politecnico
 
 Te project consists in the design and implementation of a service that provides to its consumers information about all the public fountains from Madrid, Spain. 
 
-The goal is to encourage the use of the public fountains and bring a solution for the needs related to it to the users, like seeing a map with all the public fountains, get detailed information from each one and even have a list of favorites fountains.
+The goal is to encourage the use of the public fountains and bring a solution for the needs related to this to the users, like seeing a map with all the public fountains, get detailed information from each one and even have a list of favorites fountains.
 
 To develop this project we have applied the Service Oriented Architecture that consists of the following parts:
 
@@ -27,7 +27,7 @@ Our service has 3 actors involved: System, User and Google Maps API.
 - **User**: user using our system, as we don't know its behavior we define it as a black-box sending requests to our system.
 - **Google Maps API**: an external service used by our own service (system). Therefore as we don't know its implementation we define it as a black-box too.
 
-*As the size of the diagrams are so big, it's not be comfortable enough to see them attached on this document, therefore their link is provided to see them*
+*As the size of the diagrams are so big, it's not comfortable enough to see them attached on this document, therefore their link is provided to see them*
 
 ## BPM orchestration
   
