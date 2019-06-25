@@ -2,6 +2,10 @@
     margin-top: 6% !important;
 }
 
+#errorText { 
+    color: red;
+}
+
 #logo {
     width: 75%;
     height: 65%;

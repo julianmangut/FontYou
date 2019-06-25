@@ -19,6 +19,8 @@ function chargeForm(option) {
         'Password:<br>' +
         '<input id="password" type="password" name="password" value="*****">' +
         '<br><br>' +
+        '<div id="errorText">' + 
+        '</div>' +
         '<input class="btn btn-info" type="button" value="Submit" onclick="submitData()">' +
         '</form>'
 
@@ -49,6 +51,7 @@ function submitData() {
         },
         error: function (respond) {
             console.log("Error");
+            $("#errorText").text("The inserted credentials are wrong");
             console.log(respond);
         }
     })
