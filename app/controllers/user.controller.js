@@ -24,8 +24,13 @@ exports.signIn = async (req, res) => {
         password
     });
 
-    res.status(200).json({
-        user
+    if(user){
+        res.status(200).json({
+            user
+        });
+    }
+    res.status(400).json({
+        error: "bad request"
     });
 }
 
