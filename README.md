@@ -69,7 +69,7 @@ The API has been developed with [Node.js](https://nodejs.org/es/) using the [Exp
 - **Models**: Where the data models of our application are defined
 - **Routes**: Component in charge of routing the HTTP requests to the corresponding controller.
 
-All the code of the backend is contained [here](/app)
+All the code of the backend is contained [here](/)
 
 ## Frontend
 We have developed a simple graphical interface using HTML, CSS and JavaScript (using the Jquery framework)
