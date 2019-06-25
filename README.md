@@ -32,17 +32,17 @@ Our service has 3 actors involved: System, User and Google Maps API.
 ## BPM orchestration
   
   We provide 3 diagrams to define the entire orchestration diagram: the main high-level diagram, and then we have a deeper specification of the Use of System and the Check and Update fountain's information.
-  - [Main diagram](https://github.com/julianmangut/FontYou/blob/master/docs/schemas/orchestration.png?raw=true)
-  - [Use of system diagram](https://github.com/julianmangut/FontYou/blob/master/docs/schemas/useOfSystem.png?raw=true)
-  - [Check and Update fountain's information diagram](https://github.com/julianmangut/FontYou/blob/master/docs/schemas/checkUpdateFountainsInformation.png?raw=true)
+  - [Main diagram](https://raw.githubusercontent.com/julianmangut/FontYou/master/docs/schemas/orchestration.png)
+  - [Use of system diagram](https://raw.githubusercontent.com/julianmangut/FontYou/master/docs/schemas/useOfSystem.png)
+  - [Check and Update fountain's information diagram](https://raw.githubusercontent.com/julianmangut/FontYou/master/docs/schemas/checkUpdateFountainsInformation.png)
 
 ## BPM choreography
 With the BPM choreography diagram we define the communication between the different actors of our service.
-- [BPM Choreography diagram](https://github.com/julianmangut/FontYou/blob/master/docs/schemas/choreography.png?raw=true)
+- [BPM Choreography diagram](https://raw.githubusercontent.com/julianmangut/FontYou/master/docs/schemas/choreography.png)
 
 ## PetriNets - Soundness
 In order to validate our business process we have done the Workflow Net of the service and then check its soundness.
-- [PetriNets diagram](https://github.com/julianmangut/FontYou/blob/master/docs/schemas/PetriNet.png?raw=true)
+- [PetriNets diagram](https://raw.githubusercontent.com/julianmangut/FontYou/master/docs/schemas/PetriNet.png)
 
 We can confirm its soundness and its structural soundness as we accomplish:
 - **Structural soundness**:
